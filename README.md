@@ -1,5 +1,5 @@
 # MakeGLTF
-MakeGLTF for Linux x64.  Create PBR materials for Second Life.<br>
+MakeGLTF for Linux (x64).  Create PBR materials for Second Life.<br>
 <br>
 Contact Gabriele Graves in Second Life for more information about MakeGLTF.<br>
 <br>
@@ -9,7 +9,7 @@ https://aiaicapta.in/gltf-packer/<br>
 <br>
 <b>DISCLAIMER: MakeGLTF and source code is supplied as-is under the MIT License with no warranties or support expressed or implied.</b><br>
 ### Development and build environment:
-Ubuntu 22.04 or later.<br>
+Ubuntu 22.04 (64bit) or later.<br>
 DotNet (Core) SDK v8<br>
 VSCode with "C#" and "Avalonia for VSCode" extensions installed.<br>
 ### Installation:
