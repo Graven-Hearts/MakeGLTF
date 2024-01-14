@@ -1,0 +1,339 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Graven.Hearts.MakeGLTF.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:material="using:Material.Icons.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Graven.Hearts.MakeGLTF.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/app.logo.png"
+        Title="{Binding AppName}">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <ScrollViewer>
+        <StackPanel Margin="5,5,5,5">
+            <Grid Name="MainGrid" VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                ColumnDefinitions="Auto, Auto, Auto"
+                RowDefinitions="Auto, Auto, Auto">
+
+                <StackPanel Name="BaseColourImagePanel"
+                    Grid.Column="0" Grid.Row="0"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Base Colour*" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Name="BaseColourImageButton" Tapped="OnBaseColourImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Name="BaseColourImageControl" Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding BaseColourImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <StackPanel>
+                            <TextBlock Text="The RGB Data of Base Color." FontWeight="Bold"/>
+                            <TextBlock Text="Any alpha in this image will be stripped." FontWeight="Bold"/>
+                        </StackPanel>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="NormalImagePanel"
+                    Grid.Column="0" Grid.Row="1"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Normal*" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Tapped="OnNormalImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding NormalImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <TextBlock Text="The Normal map. " FontWeight="Bold"/>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="AlphaImagePanel"
+                    Grid.Column="0" Grid.Row="2"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Alpha" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Tapped="OnAlphaImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding AlphaImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <StackPanel>
+                            <TextBlock Text="Alpha data will be packed into Base Color." FontWeight="Bold"/>
+                            <TextBlock Text="Pass a Greyscale Image." FontWeight="Bold"/>
+                            <TextBlock Text="Alpha will be extracted from the Red channel." FontWeight="Bold"/>
+                            <TextBlock Text="Leave blank for no alpha channel." FontWeight="Bold"/>
+                        </StackPanel>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="OcclusionImagePanel"
+                    Grid.Column="1" Grid.Row="0"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Occulsion" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Tapped="OnOcclusionImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding OcclusionImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <StackPanel>
+                            <TextBlock Text="Occlusion data for ORM map." FontWeight="Bold"/>
+                            <TextBlock Text="Can be left blank." FontWeight="Bold"/>
+                        </StackPanel>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="RoughnessImagePanel"
+                    Grid.Column="1" Grid.Row="1"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Roughness" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Tapped="OnRoughnessImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding RoughnessImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <StackPanel>
+                            <TextBlock Text="Roughness data for ORM map." FontWeight="Bold"/>
+                            <TextBlock Text="Can be left blank." FontWeight="Bold"/>
+                        </StackPanel>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="MetallicImagePanel"
+                    Grid.Column="1" Grid.Row="2"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Metallic" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Tapped="OnMetallicImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding MetallicImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <StackPanel>
+                            <TextBlock Text="Metalness data for ORM map." FontWeight="Bold"/>
+                            <TextBlock Text="Can be left blank." FontWeight="Bold"/>
+                        </StackPanel>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="EmissionImagePanel"
+                    Grid.Column="2" Grid.Row="0"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+                    <TextBlock Text="Emission" FontWeight="Bold" TextAlignment="Center"/>
+                    <Button Tapped="OnEmissionImageTapped"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="5" Margin="5">
+                        <Image Width="{Binding CurrentMaxWidth}" Height="{Binding CurrentMaxHeight}" Source="{Binding EmissionImage}"/>
+                    </Button>
+                    <ToolTip.Tip>
+                        <StackPanel>
+                            <TextBlock Text="The Emission map." FontWeight="Bold"/>
+                            <TextBlock Text="Can be left blank." FontWeight="Bold"/>
+                        </StackPanel>
+                    </ToolTip.Tip>
+                </StackPanel>
+                <StackPanel Name="SavePanel"
+                    Grid.Column="2" Grid.Row="1"
+                    Margin="5"
+                    Orientation="Vertical">
+                    <StackPanel Orientation="Vertical"
+                        Margin="0,0,0,5">
+                        <TextBlock Text="Material Name*" FontWeight="Bold" Padding="0,0,0,5"/>
+                        <TextBox Text="{Binding MaterialName}"
+                            ToolTip.Tip="As shown in Second Life. "
+                            MaxLength="63"/>
+                    </StackPanel>
+                    <DockPanel Margin="0,0,0,5"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Button Content="{Binding SaveName}"
+                            DockPanel.Dock="Left"
+                            Tapped="OnSaveTapped"
+                            Background="DarkGreen" Foreground="White"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Margin="0,0,5,0"
+                            ToolTip.Tip="Combines images into a GLTF file. "
+                            FontWeight="Bold"
+                            IsEnabled="{Binding SaveEnabled}"/>
+                        <Button Content="Clear"
+                            DockPanel.Dock="Right"
+                            Tapped="OnClearTapped"
+                            Background="DarkRed" Foreground="White"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Margin="0,0,5,0"
+                            ToolTip.Tip="Clear all images. "
+                            FontWeight="Bold"
+                            IsVisible="{Binding ClearVisible}"
+                            IsEnabled="{Binding ClearEnabled}"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Name="AboutPanel"
+                    Grid.Column="2" Grid.Row="2"
+                    Margin="5"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding AppBranding}"
+                        Margin="0"
+                        FontWeight="Bold"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding AppName}"
+                        Margin="0"
+                        FontWeight="Bold"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
+                    <StackPanel
+                        Margin="0, 15, 0, 15"
+                        Orientation="Horizontal">
+                        <Button
+                            Tapped="OnSetHorizontalLayout"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,0,2,0"
+                            Padding="4">
+                            <Image Width="24" Height="24" Source="/Assets/HorizontalLayoutButton.png"/>
+                            <ToolTip.Tip>
+                                <TextBlock Text="Switch to Horizontal Layout. " FontWeight="Bold"/>
+                            </ToolTip.Tip>
+                        </Button>
+                        <Button
+                            Tapped="OnSetVerticalLayout"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,0,2,0"
+                            Padding="4">
+                            <Image Width="24" Height="24" Source="/Assets/VerticalLayoutButton.png"/>
+                            <ToolTip.Tip>
+                                <TextBlock Text="Switch to Vertical Layout. " FontWeight="Bold"/>
+                            </ToolTip.Tip>
+                        </Button>
+                        <Button
+                            Tapped="OnSetGridLayout"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0"
+                            Padding="4">
+                            <Image Width="24" Height="24" Source="/Assets/GridLayoutButton.png"/>
+                            <ToolTip.Tip>
+                                <TextBlock Text="Switch to Grid Layout. " FontWeight="Bold"/>
+                            </ToolTip.Tip>
+                        </Button>
+                    </StackPanel>
+                    <DockPanel Margin="0">
+                        <Button
+                            DockPanel.Dock="Left"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Tapped="OnInfoTapped"
+                            Margin="0"
+                            Padding="0">
+                            <material:MaterialIcon
+                                Width="32"
+                                Height="32"
+                                Margin="0"
+                                IsVisible="true"
+                                Kind="InformationBox">
+                                <ToolTip.Tip>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding AppBranding}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding AppName}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding AppVersion}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding AppAuthor}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding AppURL}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding AppOriginalCredits}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding AppOriginalURL}"
+                                            Margin="0"
+                                            FontWeight="Bold"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </ToolTip.Tip>
+                            </material:MaterialIcon>
+                        </Button>
+                        <ToggleButton
+                            DockPanel.Dock="Right"
+                            HorizontalAlignment="Right"
+                            Margin="0"
+                            IsChecked="true"
+                            Checked="OnStayOnTopChecked"
+                            Unchecked="OnStayOnTopUnchecked">
+                            <ToggleButton.Template>
+                                <ControlTemplate>
+                                    <Panel>
+                                        <material:MaterialIcon
+                                            Width="32"
+                                            Height="32"
+                                            IsVisible="{Binding !IsChecked, RelativeSource={RelativeSource TemplatedParent}}"
+                                            Kind="PinOff"/>
+                                        <material:MaterialIcon 
+                                            Width="32"
+                                            Height="32"	
+                                            IsVisible="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"
+                                            Kind="Pin"/>
+                                    </Panel>
+                                </ControlTemplate>	
+                            </ToggleButton.Template>
+                            <ToolTip.Tip>
+                                <TextBlock Text="Stay on Top. " FontWeight="Bold"/>
+                            </ToolTip.Tip>
+                        </ToggleButton>
+                    </DockPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
