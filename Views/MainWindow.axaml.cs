@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
@@ -13,7 +12,6 @@ using Graven.Hearts.MakeGLTF.Constants;
 using Graven.Hearts.MakeGLTF.Extensions;
 using Graven.Hearts.MakeGLTF.ViewModels;
 using Graven.Hearts.MakeGLTF.Views.Layouts;
-using Microsoft.VisualBasic;
 
 namespace Graven.Hearts.MakeGLTF.Views
 {
@@ -284,7 +282,14 @@ namespace Graven.Hearts.MakeGLTF.Views
 
         private void OnInfoTapped(object sender, TappedEventArgs args)
         {
-            System.Diagnostics.Process.Start("xdg-open", App.AppURL);
+            if (OperatingSystem.IsLinux())
+                Process.Start("xdg-open", App.AppURL);
+            else
+            if (OperatingSystem.IsWindows())
+                Process.Start(new ProcessStartInfo(App.AppURL) { UseShellExecute = true });
+            else
+            if (OperatingSystem.IsMacOS())
+                Process.Start("open", App.AppURL);
         }
 
         private void OnSetGridLayout(object sender, TappedEventArgs args)

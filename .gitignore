@@ -1,0 +1,13 @@
+obj/makegltf.csproj.nuget.dgspec.json
+obj/makegltf.csproj.nuget.g.props
+obj/makegltf.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
+obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+obj/Debug/net8.0/makegltf.AssemblyInfo.cs
+obj/Debug/net8.0/makegltf.AssemblyInfoInputs.cache
+obj/Debug/net8.0/makegltf.assets.cache
+obj/Debug/net8.0/makegltf.csproj.AssemblyReference.cache
+obj/Debug/net8.0/makegltf.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net8.0/Avalonia/resources
+obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
